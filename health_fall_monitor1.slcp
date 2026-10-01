@@ -1,0 +1,60 @@
+# Silicon Labs Project Configuration Tools: slcp, v0, Component selection file.
+project_name: health_fall_monitor1
+label: health_fall_monitor1
+description: |
+  This example project shows an empty configuration that can be used as a starting point to add components and functionality.
+category: Example|Platform
+filter:
+- name: Device Type
+  value: [SoC]
+- name: MCU
+  value: [32-bit MCU]
+- name: Project Difficulty
+  value: [Beginner]
+package: platform
+quality: production
+readme:
+- {path: readme.md}
+- {path: readme.md}
+source:
+- {path: app.c}
+include:
+- path: .
+  file_list:
+  - {path: app.h}
+sdk: {id: simplicity_sdk, version: 2025.6.3}
+toolchain_settings: []
+component:
+- {from: third_party_hw_drivers, id: hvac_bundle_scd41_sps30}
+- {from: third_party_hw_drivers, id: mikroe_buzz2}
+- {from: third_party_hw_drivers, id: mikroe_irthermo3}
+- {from: third_party_hw_drivers, id: services_oled_glib}
+- {from: third_party_hw_drivers, id: sparkfun_air_quality_sgp40_qwiic}
+- {from: third_party_hw_drivers, id: sparkfun_hr_po_max30101_max32664}
+- {from: third_party_hw_drivers, id: sparkfun_micro_oled_ssd1306}
+- {id: EFR32MG26B510F3200IM68}
+- {id: app_log}
+- {id: brd2608a}
+- {id: clock_manager}
+- {id: device_init}
+- instance: [qwiic, sensor]
+  id: i2cspm
+- {id: icm40627_driver}
+- instance: [A7680C, vcom]
+  id: iostream_eusart
+- instance: [mikroe]
+  id: iostream_usart
+- {id: si70xx_driver}
+- instance: [btn0, btn1]
+  id: simple_button
+- {id: sl_main}
+- {id: sleeptimer}
+- {id: status_string}
+define:
+- {name: DEBUG_EFM}
+ui_hints:
+  highlight:
+  - {path: readme.md, focus: true}
+sdk_extension:
+- {id: third_party_hw_drivers, version: 4.4.1}
+
